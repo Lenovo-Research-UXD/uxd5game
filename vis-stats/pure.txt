@@ -1,0 +1,1 @@
+{"network": "wifi","time": "2017-06-03T04:28:05.110Z","score": 130,"hour":12},{"network":"4g","time":"2017-06-03T04:28:51.392Z","score": 120,"hour": 12},

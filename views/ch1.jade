@@ -1,0 +1,31 @@
+doctype html
+html(lang='en')
+  head
+    meta(name='viewport', content='width=device-width,user-scalable=no')
+    meta(charset='utf-8')
+    meta(name="x5-fullscreen" content="true")
+    meta(name="full-screen" content="yes")
+    title 是设计师就撑100秒
+    script.
+      var _hmt = _hmt || [];
+      (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9626b6aaae37f55245bf0a70bbb6db4a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      })();
+  body(onload='init()')
+    .content
+      canvas#startCanvas.game-board
+      canvas#loadCanvas.game-board
+      canvas#testCanvas.game-board
+      canvas#drawCanvas.game-board
+      canvas#endCanvas.game-board
+    link(rel='stylesheet', type='text/css', href='index.css')
+    script(src='jquery-3.1.1.min.js')
+    script(src='preloadjs-next.min.js')
+    script(src='easeljs-next.min.js')
+    script(src='tweenjs-next.min.js')
+    script(src='soundjs-next.min.js')
+    script(src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js')
+    script(src='game.min.js')

@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+  head
+    meta(name='viewport', content='width=device-width,user-scalable=no')
+    meta(charset='utf-8')
+    meta(name="x5-fullscreen" content="true")
+    meta(name="full-screen" content="yes")
+    title For testing rank info
+  body(onload='init()')
+    .content
+      canvas#startCanvas.game-board
+      canvas#loadCanvas.game-board
+      canvas#testCanvas.game-board
+      canvas#drawCanvas.game-board
+      canvas#endCanvas.game-board
+    link(rel='stylesheet', type='text/css', href='index.css')
+    script(src='jquery-3.1.1.min.js')
+    script(src='preloadjs-next.min.js')
+    script(src='easeljs-next.min.js')
+    script(src='tweenjs-next.min.js')
+    script(src='soundjs-next.min.js')
+    script(src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js')
+    script(src='game.js')

@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Stats
+  body
+    p#time
+    .row
+      .col-md-4
+        canvas#score-chart
+      .col-md-4
+        canvas#score-chart2
+      .col-md-2
+        canvas#network-chart
+    .row
+      .col-md-11
+        canvas#time-chart
+    link(href="stat.css", rel='stylesheet')    
+    link(href='https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', rel='stylesheet')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js')
+    script(src='stat.js')
+
+    

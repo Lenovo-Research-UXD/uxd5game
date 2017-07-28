@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Stats</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <p id="time"></p>
+    <div class="row">
+      <div class="col-md-4">
+        <canvas id="chart"></canvas>
+      </div>
+
+      <div class="col-md-4">
+        <canvas id="chart3"></canvas>
+      </div>
+
+      <div class="col-md-2">
+        <canvas id="chart2"></canvas>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+
+    console.log(new Date().toLocaleTimeString())
+
+
+    var numOfPlayers = 0
+
+    var dataScale = [
+      "0 - 30",
+      "40 - 50",
+      "60 - 80",
+      "90 - 100",
+      "110 - 120",
+      "130 - 150",
+      "160 - 170",
+      "180 - 190",
+      "200 - 210",
+      "220 - 250",
+      "260 - 300",
+      "310 - 400",
+      "410 - 600",
+      "610 - 800",
+      "810 -  ?",
+    ]
+
+    var timeScale = [
+      "00:00",
+      "01:00",
+      "02:00",
+      "03:00",
+      "04:00",
+      "05:00",
+      "06:00",
+      "07:00",
+      "08:00",
+      "09:00",
+      "10:00",
+      "11:00",
+      "12:00",
+      "13:00",
+      "14:00",
+      "15:00",
+      "16:00",
+      "17:00",
+      "18:00",
+      "19:00",
+      "20:00",
+      "21:00",
+      "22:00",
+      "23:00",
+    ]
+
+    var scoreData = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    var networkData = [0,0,0,0]
+    var hourData = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    var startTime, endTime;
+
+    function countAppearance(data){
+      if(data.score>=0 && data.score <=30){
+        scoreData[0]++
+      }
+      else if(data.score>=40 && data.score <=50){
+        scoreData[1]++
+      }
+      else if(data.score>=60 && data.score <=80){
+        scoreData[2]++
+      }
+      else if(data.score>=90 && data.score <=100){
+        scoreData[3]++
+      }
+      else if(data.score>=110 && data.score <=120){
+        scoreData[4]++
+      }
+      else if(data.score>=130 && data.score <=150){
+        scoreData[5]++
+      }
+      else if(data.score>=160 && data.score <=170){
+        scoreData[6]++
+      }
+      else if(data.score>=180 && data.score <=190){
+        scoreData[7]++
+      }
+      else if(data.score>=200 && data.score <=210){
+        scoreData[8]++
+      }
+      else if(data.score>=220 && data.score <=250){
+        scoreData[9]++
+      }
+      else if(data.score>=260 && data.score <=300){
+        scoreData[10]++
+      }
+      else if(data.score>=310 && data.score <=400){
+        scoreData[11]++
+      }
+      else if(data.score>=410 && data.score <=600){
+        scoreData[12]++
+      }
+      else if(data.score>=610 && data.score <=800){
+        scoreData[13]++
+      }
+      else if(data.score>=810){
+        scoreData[14]++
+      }
+
+      if(data.network == "wifi"){
+        networkData[0]++
+      }
+      else if(data.network == "4g"){
+        networkData[1]++
+      }
+      else if(data.network == "3g+"){
+        networkData[2]++
+      }
+      else if(data.network == "2g"){
+        networkData[3]++
+      }
+
+      if(data.hour == 0){
+        hourData[0]++
+      }
+      else if(data.hour == 1){
+        hourData[1]++
+      }
+      else if(data.hour == 2){
+        hourData[2]++
+      }
+      else if(data.hour == 3){
+        hourData[3]++
+      }
+      else if(data.hour == 4){
+        hourData[4]++
+      }
+      else if(data.hour == 5){
+        hourData[5]++
+      }
+      else if(data.hour == 6){
+        hourData[6]++
+      }
+      else if(data.hour == 7){
+        hourData[7]++
+      }
+      else if(data.hour == 8){
+        hourData[8]++
+      }
+      else if(data.hour == 9){
+        hourData[9]++
+      }
+      else if(data.hour == 10){
+        hourData[10]++
+      }
+      else if(data.hour == 11){
+        hourData[11]++
+      }
+      else if(data.hour == 12){
+        hourData[12]++
+      }
+      else if(data.hour == 13){
+        hourData[13]++
+      }
+      else if(data.hour == 14){
+        hourData[14]++
+      }
+      else if(data.hour == 15){
+        hourData[15]++
+      }
+      else if(data.hour == 16){
+        hourData[16]++
+      }
+      else if(data.hour == 17){
+        hourData[17]++
+      }
+      else if(data.hour == 18){
+        hourData[18]++
+      }
+      else if(data.hour == 19){
+        hourData[19]++
+      }
+      else if(data.hour == 20){
+        hourData[20]++
+      }
+      else if(data.hour == 21){
+        hourData[21]++
+      }
+      else if(data.hour == 22){
+        hourData[22]++
+      }
+      else if(data.hour == 23){
+        hourData[23]++
+      }
+
+
+    }
+
+
+
+    $.get('pure.txt', function(data){
+      var dataString, dataObj
+      if(data){
+        dataString = '['+data.substring(0, data.length-1)+']'
+        dataObj = JSON.parse(dataString)
+        numOfPlayers = dataObj.length
+        startTime = dataObj[0].time
+        endTime = dataObj[dataObj.length-1].time
+        document.getElementById('time').innerHTML= "Data from "+startTime+" to "+endTime
+      }
+
+      for(index in dataObj){
+        countAppearance(dataObj[index])
+      }
+      
+      // for(index in scoreData){
+      //   scoreData[index] = Math.round(scoreData[index]/dataObj.length * 100)
+      // }
+
+      // for(index in networkData){
+      //   networkData[index] = Math.round(networkData[index]/dataObj.length * 100)
+      // }
+
+      // for(index in hourData){
+      //   hourData[index] = Math.round(hourData[index]/dataObj.length * 100)
+      // }
+
+      console.log(scoreData)
+      console.log(networkData)
+      console.log(hourData)
+
+      var ctx = document.getElementById('chart').getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+
+          // The data for our dataset
+          data: {
+              labels: dataScale,
+              datasets: [{
+                  label: "Score of "+numOfPlayers+" player(s)",
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: scoreData,
+              }]
+          },
+          options: {
+            title: {
+                display: true,
+                text: 'Number of players by score'
+            }
+          }
+      });
+
+
+/*
+  visualization for networktype
+*/
+
+      var netScale = [
+      "wifi",
+      "4g",
+      "3g",
+      "2g"
+    ]
+
+      var ctx2 = document.getElementById('chart2').getContext('2d');
+
+
+      var networkVisData = {
+          datasets: [{
+              data: networkData,
+              backgroundColor: [
+                  "#17B680",
+                  "#1399B3",
+                  "#0C66B3",
+                  "#0127B3"
+              ]
+          }],
+
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+          labels: netScale
+      };
+
+      var myDoughnutChart = new Chart(ctx2, {
+          type: 'doughnut',
+          data: networkVisData,
+          options: {
+            title: {
+                display: true,
+                text: 'Number of play times by network type'
+            }
+          }
+      });
+
+/*
+  visualization for timeline
+*/
+
+      var ctx3 = document.getElementById('chart3').getContext('2d');
+
+
+      var hourVisData = {
+          datasets: [{
+              label: "Number of play times by hour",
+              data: hourData,
+              backgroundColor: "#2B65B3"
+          }],
+
+          // These labels appear in the legend and in the tooltips when hovering different arcs
+          labels: timeScale
+      };
+
+      var myBarChart = new Chart(ctx3, {
+          type: 'bar',
+          data: hourVisData,
+          options: {
+            title: {
+                display: true,
+                text: 'Number of play times by hour'
+            }
+
+          }
+      });
+    })
+
+
+    </script>
+  </body>
+</html>
