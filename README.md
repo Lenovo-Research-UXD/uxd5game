@@ -1,4 +1,4 @@
-# wechat-sdk-demo
-基于nodejs的微信jssdk简单应用
+# Shut then up 小游戏
+基于html5的专属设计师小游戏。
 
-description: http://www.cnblogs.com/albin-gecker/p/4628355.html
+游戏链接: http://uxd5-game.iego.cn/ch5
