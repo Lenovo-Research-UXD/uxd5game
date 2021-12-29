@@ -8,7 +8,7 @@ var peopleLists = [], timeoutList = [];
 var lifeValue = 10;
 var ROLE_SCALE = 650 * 0.8 / 300;
 var score = 0;
-var mouth_gray;
+var hasLevelUp=[false,false,false,false,false,false,false,false,false,false,false,false,false]
 var oldArray = [];
 var networkType = "unknown";
 var feedback = {},
@@ -31,8 +31,6 @@ if(!window.localStorage.hasOwnProperty("enableTutorial")){
 
 ratio = 1157 / 720;
 
-//console.log(window.innerHeight, window.innerWidth)
-
 var loadCanvas = document.getElementById("loadCanvas");
 loadCanvas.height = window.innerHeight;
 loadCanvas.width = window.innerHeight / ratio;
@@ -42,8 +40,6 @@ stage = new createjs.Stage(loadCanvas);
 h = stage.canvas.height;
 //w = h / ratio
 scaleY = h / 1157;
-
-console.log(navigator.userAgent)
 
 if(navigator.userAgent.indexOf("iPhone")<0 && navigator.userAgent.indexOf("Android")<0){
 	w = h / ratio
@@ -58,112 +54,108 @@ else{
 	w = stage.canvas.width;
 	$('.game-board').css({"width":"100%", "height":"100%"})
 }
-
-
 stats.path = pagePath;
 
-console.log(window.localStorage.getItem("enableTutorial"))
-
 switch (pagePath){
-	case "/ch0":
+	case "/shutup/ch0":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch1":
+	case "/shutup/ch1":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch2":
+	case "/shutup/ch2":
 		shareTitle = "我就喜欢你看不惯我，又打不死我的样子！";
 		shareContent = "快点我呀，你好坏哦";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch3":
+	case "/shutup/ch3":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch4":
+	case "/shutup/ch4":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch5":
+	case "/shutup/ch5":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch6":
+	case "/shutup/ch6":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch7":
+	case "/shutup/ch7":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch8":
+	case "/shutup/ch8":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch9":
+	case "/shutup/ch9":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch10":
+	case "/shutup/ch10":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch11":
+	case "/shutup/ch11":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch12":
+	case "/shutup/ch12":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch13":
+	case "/shutup/ch13":
 		shareTitle = "墙裂推荐！设计师的专属游戏";
 		shareContent = "这是丧逼设计师开发的最不靠谱游戏，已火爆设计圈。系好安全带，我们要起飞了。";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch14":
+	case "/shutup/ch14":
 		shareTitle = "秘笈：点击口水后，结果竟然变成这样!";
 		shareContent = "墙裂推荐！设计师的专属游戏";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch15":
+	case "/shutup/ch15":
 		shareTitle = "我妈玩完这个游戏，准备转行做设计了！";
 		shareContent = "你妈喊你回家做设计～";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
-	case "/ch16":
+	case "/shutup/ch16":
 		shareTitle = "我就喜欢你看不惯我，又打不死我的样子！";
 		shareContent = "快点我呀，你好坏哦";
-		shareImage = "http://uxd5-game.iego.cn/_assets/art/share_icon.png";
+		shareImage = "http://research-h5.lenovo.com/shutup/_assets/art/share_icon.png";
 		break;
 }
 function configureSharing(result){
 	$.ajax({
 	type: "POST",
-	url: "/sign",
+	url: "/shutup/sign",
 	data: {
 		url: pageUrl
 	},
 	success: function(data) {
 		if(result){
 			var spendTime = endTime-startTime
-			var rankPercentage = parseInt((result.total-result.rank)*100/result.total)
+			var rankPercentage = parseInt((result.total-result.rank+1)*100/result.total)
 			if(rankPercentage>=99)
-				shareTitle = "没想到！我竟撑了"+(spendTime/1000).toFixed(2)+"秒，成功跻身全球前"+rankPercentage+"%,名列"+result.rank+"。"
+				shareTitle = "没想到！我竟撑了"+(spendTime/1000).toFixed(2)+"秒，成功跻身全球前1%,名列"+(result.rank+1)+"。"
 			else
 				shareTitle = "没想到！我竟撑了"+(spendTime/1000).toFixed(2)+"秒，超过全球"+rankPercentage+"%的设计师。"
 		}
@@ -364,6 +356,9 @@ function init() {
 		src: "bg.png",
 		id: "background"
 	},{
+		src: "bg2.png",
+		id: "background2"
+	},{
 		src: "bg_dark.png",
 		id: "background_dark"
 	},{
@@ -517,12 +512,10 @@ function init() {
 		var progress;
 
 		loader.on("progress", function(event) {
-			//console.log("Progress:", loader.progress, event.progress);
 			if (progress)
 				stage.removeChild(progress)
 			progress = new createjs.Text(Math.floor(loader.progress * 100) + "%", "30px Arial", "#ffffff");
 			loadResource(progress, "progress", (w - progress.getBounds().width * scaleY) / 2, 885 * scaleY, 1, false, true)
-				//mouth_gray.x = initialMouthGrayX + mouth_gray.getTransformedBounds().width * loader.progress
 		});
 
 		loader.addEventListener("complete", function() {
@@ -567,9 +560,7 @@ function updateScore(score) {
 	var scoreArray = score.toString().split("").reverse(),
 		initial_num_x = w - 10 * scaleY;
 
-	// console.log(oldArray)
 	for (index in oldArray) {
-		console.log(stage.getChildIndex(oldArray[index]))
 			//if(stage.getChildByName(i+"_b"))
 		stage.removeChild(oldArray[index])
 	}
@@ -716,8 +707,6 @@ function handleComplete() {
 		else
 			currentX = stage.mouseX
 
-		console.log(currentX)
-
 		var fullMouthWidth = mouthWidth + guide.getTransformedBounds().width
 		if (currentX > w-fullMouthWidth && currentX < w) {
 			var ratio = (fullMouthWidth-currentX) / fullMouthWidth
@@ -760,6 +749,7 @@ function handleComplete() {
 
 
 	function startGame() {
+		hasLevelUp=[false,false,false,false,false,false,false,false,false,false,false,false,false]
 		lifeValue = 10;
 		score = 0;
 		feedback = {};
@@ -1138,16 +1128,16 @@ function handleComplete() {
 				stats.network = networkType;
 				stats.device = navigator.userAgent;
 				$.ajax({
-					url: '/addStat',
+					url: '/shutup/addStat',
 					type: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify(stats),
 					dataType: 'json',
 					success: function(res) {
-						console.log(stats)
+						//console.log(stats)
 					},
 					error: function() {
-						console.log(stats);
+						//console.log(stats);
 						console.log("writing error!");
 					}
 				});
@@ -1225,7 +1215,7 @@ function handleComplete() {
 				shareContent = "墙裂推荐！设计师的专属游戏！";
 			}
 			$.ajax({
-					url: '/getRank?score='+score,
+					url: '/shutup/getRank?score='+score,
 					type: 'GET',
 					contentType: 'application/json',
 					dataType: 'json',
@@ -1338,7 +1328,6 @@ function handleComplete() {
 					share_indicator.visible=true
 				}
 				else if (introducing.visible && introducing.hitTest(localCoor4.x, localCoor4.y)) {
-					console.log(introducing.visible,localCoor4.x, localCoor4.y)
 					if(localCoor4.x<360 && localCoor4.y>(890-80)){
 					    window.location.href = 'http://research.lenovo.com?time='+((new Date()).getTime());
 					}
@@ -1367,30 +1356,6 @@ function handleComplete() {
 
 				if (btnShare_1.hitTest(localCoor2.x, localCoor2.y)) {
 					btnShare_2.visible = false;
-					//stage.removeChild(end_explode, end_explode_2)
-					//loadResource(result_bg_dark, "result_bg_dark", 0 ,0, 2, false, true)
-					//loadResource(share_indicator, "share_indicator", w/2+50*scaleY ,30*scaleY, 1, false, true)
-
-					// var content = prompt("欢迎吐槽:)");
-					// if (content) {
-					// 	feedback.timestamp = new Date().toLocaleString();
-					// 	feedback.content = content;
-					// 	feedback.score = score;
-
-					// 	$.ajax({
-					// 		url: '/addFeedback',
-					// 		type: 'POST',
-					// 		contentType: 'application/json;charset=utf-8',
-					// 		data: JSON.stringify(feedback),
-					// 		dataType: 'json',
-					// 		success: function(res) {
-					// 			confirm("感谢你宝贵的意见!")
-					// 		},
-					// 		error: function() {
-					// 			console.log("writing error!");
-					// 		}
-					// 	});
-					// }
 				}
 			})
 
@@ -1497,7 +1462,10 @@ function handleComplete() {
 		if(window.localStorage.getItem("enableTutorial")=="true")
 			startTutorial();
 		else{
-			background.image = loader.getResult("background")
+			if(pagePath=="/ar")
+				background.image = loader.getResult("background2")
+			else
+				background.image = loader.getResult("background")
 			createjs.Tween.get(painting)
 				.to({
 					y: h - painting.getBounds().width * scaleY * 0.77 * 2
@@ -1597,7 +1565,6 @@ function peopleComeOut(role, duration, isLeft) {
 			} else if (role.currentAnimation == "speak2") {
 				role.gotoAndPlay("speak2");
 			} else if (role.currentAnimation == "explode") {
-				console.log("after exploded")
 				explodeAction(role)
 				rounds = 1
 			}
@@ -1712,28 +1679,6 @@ function peopleComeOut(role, duration, isLeft) {
 						updateScore(score)
 					})
 
-				if (score == 50) {
-					loadActors(dev.clone(), trainee.clone(), dev.clone(), trainee.clone())
-				} else if (score == 100) {
-					loadActors(pm.clone(), dev.clone(), pm.clone(), trainee.clone())
-				} else if (score == 150) {
-					loadActors(dev.clone(), pm.clone(), trainee.clone(), dev.clone())
-				} else if (score == 200) {
-					loadActors(pm.clone(), dev.clone(), boss.clone(), trainee.clone())
-				} else if (score == 250) {
-					loadActors(trainee.clone(), boss.clone(), dev.clone(), pm.clone())
-				} else if (score == 400) {
-					loadActors(boss.clone(), pm.clone(), dev.clone(), trainee.clone(), dev.clone(), trainee.clone())
-				} else if (score == 450) {
-					loadActors(pm.clone(), dev.clone(), boss.clone(), boss.clone(), trainee.clone(), dev.clone())
-				} else if (score == 700) {
-					loadActors(boss.clone(), pm.clone(), pm.clone(), dev.clone(), boss.clone(), boss.clone())
-				} else if (score == 800) {
-					loadActors(boss.clone(), dev.clone(), pm.clone(), boss.clone(), dev.clone(), pm.clone(), trainee.clone(), boss.clone())
-				} else if (score == 1000) {
-					loadActors(boss.clone(), boss.clone(), boss.clone(), boss.clone(), pm.clone(), pm.clone(), pm.clone(), pm.clone())
-				}
-
 				createjs.Tween.get(role)
 					.to({
 						x: role_x
@@ -1752,6 +1697,46 @@ function peopleComeOut(role, duration, isLeft) {
 			mouth_explode.visible = true;
 			mouth_explode.gotoAndPlay("explode");
 			var explode = createjs.Sound.play("explode");
+			if (score >= 50 && !hasLevelUp[0]) {
+				loadActors(dev.clone(), trainee.clone())
+				hasLevelUp[0] = true
+			} else if (score >= 100 && !hasLevelUp[1]) {
+				loadActors(pm.clone(), dev.clone(), pm.clone(), trainee.clone())
+				hasLevelUp[1] = true
+			} else if (score >= 150 && !hasLevelUp[2]) {
+				loadActors(dev.clone(), pm.clone(), trainee.clone(), dev.clone())
+				hasLevelUp[2] = true
+			} else if (score >= 200 && !hasLevelUp[3]) {
+				loadActors(pm.clone(), dev.clone(), boss.clone(), trainee.clone())
+				hasLevelUp[3] = true
+			} else if (score >= 250 && !hasLevelUp[4]) {
+				loadActors(trainee.clone(), boss.clone(), dev.clone(), pm.clone())
+				hasLevelUp[4] = true
+			} else if (score >= 400 && !hasLevelUp[5]) {
+				loadActors(pm.clone(), dev.clone(), dev.clone(), trainee.clone())
+				hasLevelUp[5] = true
+			} else if (score >= 450 && !hasLevelUp[6]) {
+				loadActors(pm.clone(), boss.clone(), trainee.clone(), dev.clone())
+				hasLevelUp[6] = true
+			} else if (score >= 700 && !hasLevelUp[7]) {
+				loadActors(boss.clone(), pm.clone(), pm.clone(), dev.clone(), trainee.clone(), trainee.clone())
+				hasLevelUp[7] = true
+			} else if (score >= 850 && !hasLevelUp[8]) {
+				loadActors(boss.clone(), pm.clone(), boss.clone(), dev.clone(), pm.clone(), trainee.clone())
+				hasLevelUp[8] = true
+			} else if (score >= 1000 && !hasLevelUp[9]) {
+				loadActors(pm.clone(), boss.clone(), pm.clone(), boss.clone(), boss.clone(), trainee.clone())
+				hasLevelUp[9] = true
+			} else if (score >= 1100 && !hasLevelUp[10]) {
+				loadActors(boss.clone(), pm.clone(), boss.clone(), dev.clone(), boss.clone(), pm.clone())
+				hasLevelUp[10] = true
+			} else if (score >= 1200 && !hasLevelUp[11]) {
+				loadActors(boss.clone(), dev.clone(), pm.clone(), trainee.clone(), dev.clone(), pm.clone(), trainee.clone(), boss.clone())
+				hasLevelUp[11] = true
+			} else if (score >= 1500 && !hasLevelUp[12]) {
+				loadActors(boss.clone(), boss.clone(), dev.clone(), boss.clone(), pm.clone(), trainee.clone(), pm.clone(), pm.clone())
+				hasLevelUp[12] = true
+			}
 
 		}
 
@@ -1770,7 +1755,6 @@ function loadActors(actor1, actor2, actor3, actor4, actor5, actor6, actor7, acto
 	timeoutList = [];
 	if (arguments.length == 2) {
 		peopleLists.push(actor1, actor2)
-		console.log(peopleLists, timeoutList)
 		loadResource(actor1, actor1.name, -ACTOR_WIDTH * scaleY * ROLE_SCALE / 3, h*0.3*Math.random(), ROLE_SCALE, false, true);
 		loadResource(actor2, actor2.name, w + ACTOR_WIDTH * scaleY * ROLE_SCALE / 3, h*0.3*Math.random(), ROLE_SCALE, true, true);
 		stage.swapChildren(actor2, star_number_sm)
@@ -1871,15 +1855,12 @@ var checkTouchedPeople = function(touchX, touchY, width) {
 	for (index in peopleLists) {
 		var localCoor = peopleLists[index].globalToLocal(touchX, touchY)
 		if (peopleLists[index].hitTest(localCoor.x, localCoor.y) && !peopleLists[index].exploded) {
-			console.log(peopleLists[index].name)
 			if (checkMouth2(currentX, currentY, width, peopleLists[index])) {
 				if (peopleLists[index].name == "boss") {
 					if (peopleLists[index].hasFirstShut == false) {
-						console.log("first boss detected")
 						peopleLists[index].gotoAndPlay("open");
 					    peopleLists[index].hasFirstShut = true;
 					} else if (peopleLists[index].hasFirstShut == true) {
-						console.log("second boss detected")
 						peopleLists[index].exploded = true;
 						peopleLists[index].gotoAndPlay("explode");
 						var shutup = createjs.Sound.play("shutup");
@@ -1904,7 +1885,6 @@ function checkMouth2(x, y, width, role) {
 		mouthY = MOUTH_Y + MOUTH_H / 2,
 		result;
 
-	// console.log(role.name, role.globalToLocal(x,y).x, mouthX, role.globalToLocal(x,y).y, mouthY, role.scaleX, scaleY)
 	var mouthWidth = role.getTransformedBounds().width / 3
 	if (Math.abs(1 - role.globalToLocal(x, y).y / mouthY) < 0.2 && width / mouthWidth > 0.7) {
 		result = true;
@@ -1921,7 +1901,10 @@ function checkMouth2(x, y, width, role) {
 						alpha: 0
 					}, 500, createjs.Ease.linear)
 					.call(function() {
-						background.image = loader.getResult("background")
+						if(pagePath=="/ar")
+							background.image = loader.getResult("background2")
+						else
+							background.image = loader.getResult("background")
 						loadActors(trainee.clone(), trainee.clone())
 					})
 			}, 3000)

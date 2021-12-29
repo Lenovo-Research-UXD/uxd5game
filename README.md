@@ -1,4 +1,4 @@
-# Shut Then Up Game 
-A game was developed for designers who complain about too many arguments they have with their colleagues such as product manager, developers, boss... Have a fun
+# wechat-sdk-demo
+基于nodejs的微信jssdk简单应用
 
-Game link: http://research-h5.lenovo.com/shutup/ch1
+description: http://www.cnblogs.com/albin-gecker/p/4628355.html
